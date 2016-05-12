@@ -1,0 +1,11 @@
+{
+  "name": "riksdagsanalys",
+  "version": "1.0.0",
+  "description": "Verktyg för analys av riksdagsledamöter",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andreas Martinsson",
+  "license": "ISC"
+}

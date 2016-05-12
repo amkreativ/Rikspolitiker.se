@@ -1,0 +1,47 @@
+<span class="debug">{{selectedID}}</span>
+
+<div class="politiker" ng-click="select(person.intressent_id)" ng-class="{'selected': isSelected(person.intressent_id)}" ng-repeat="person in dataset.personlista.person | orderBy:'sorteringsnamn'" class="">
+  <div ng-class=person.parti class="parti">
+    <span>{{person.parti}}</span>
+  </div>
+  <div class="info">
+    <div class="bio">
+      <h2>{{person.tilltalsnamn}} {{person.efternamn}}</h2>
+      <ul>
+        <li><span>{{2016 - person.fodd_ar}} år</span><span>{{person.valkrets}}</span></li>
+        <li><span>{{person.personuppdrag.uppdrag[0].roll_kod}}</span></li>
+        <li><span>{{2016 - person.fodd_ar}} år</span><span>{{person.valkrets}}</span></li>
+        <li><span>{{person.personuppdrag.uppdrag[0].roll_kod}}</span></li>
+        <li><span>{{2016 - person.fodd_ar}} år</span><span>{{person.valkrets}}</span></li>
+        <li><span>{{person.personuppdrag.uppdrag[0].roll_kod}}</span></li>
+        <li><span>{{2016 - person.fodd_ar}} år</span><span>{{person.valkrets}}</span></li>
+        <li><span>{{person.personuppdrag.uppdrag[0].roll_kod}}</span></li>
+      </ul>
+
+      
+    </div>
+    <div class="bottom"></div>
+    
+    
+
+  </div>
+    <img class="bild" src="{{person.bild_url_192}}">
+</div>
+
+
+<div class=""></div>
+
+<div class="row marketing">
+  <h4>HTML5 Boilerplate</h4>
+  <p>
+    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
+  </p>
+
+  <h4>Angular</h4>
+  <p>
+    AngularJS is a toolset for building the framework most suited to your application development.
+  </p>
+
+  <h4>Karma</h4>
+  <p>Spectacular Test Runner for JavaScript.</p>
+</div>
