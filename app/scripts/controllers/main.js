@@ -23,8 +23,8 @@ angular.module('rksApp')
     $scope.selectedID = ':D';
 
     $scope.select = function(id){
-    	console.log("id");
-    	if ($scope.selectedID == id) {
+    	console.log('id');
+    	if ($scope.selectedID === id) {
     		$scope.selectedID = '';
     	}else{
     		$scope.selectedID = id;
@@ -32,7 +32,7 @@ angular.module('rksApp')
     };
 
     $scope.isSelected = function(id){
-    	if (id == $scope.selectedID) {
+    	if (id === $scope.selectedID) {
     		console.log(id);
     		return true;
     	}else{

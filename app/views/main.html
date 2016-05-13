@@ -1,25 +1,55 @@
-<div ng-repeat="person in dataset.personlista.person | orderBy:'sorteringsnamn'" class="">
-  <div class="politiker" ng-click="select(person.intressent_id)" ng-class="{'selected': isSelected(person.intressent_id)}" >
-    <div ng-class=person.parti class="parti">
-      <span>{{person.parti}}</span>
+<div class="row listan">
+  <div class="col-md-5">
+    <div class="settings">
+      <input></input>
     </div>
-    <div class="info">
-      <div class="bio">
-        <h2>{{person.tilltalsnamn}} {{person.efternamn}}</h2>
-        <ul>
-          <li><span>{{2016 - person.fodd_ar}} år</span><span>{{person.valkrets}}</span></li>
-          <li><span>{{person.personuppdrag.uppdrag[0].roll_kod}}</span></li>
-        </ul>
-
-        
-      </div>
-      <div class="bottom"></div>
-      
-      
-
-    </div>
-      <img class="bild" src="{{person.bild_url_192}}">
-
   </div>
-  <div class="extras"></div>
+  <div class="col-md-7">
+    <div ng-repeat="person in dataset.personlista.person | orderBy:'sorteringsnamn' | limitTo:20" class="">
+      <div class="politiker" ng-click="select(person.intressent_id)" ng-class="{'selected': isSelected(person.intressent_id)}" >
+        <div ng-class=person.parti class="parti">
+          <span>{{person.parti}}</span>
+        </div>
+        <div class="info">
+          <div class="bio">
+            <h2>{{person.tilltalsnamn}} {{person.efternamn}}</h2>
+            <ul>
+              <li><span>{{2016 - person.fodd_ar}} år</span><span>{{person.valkrets}}</span></li>
+              <li><span>Yrke</span></li>
+              <li><span>Aktivitetsindex:</span></li>
+              <li><span>Ordförråd:</span></li>
+              <li><span>Huvudfråga:</span></li>
+              <li><span>Frånvaro:</span></li>
+              <li><span>Kaosfaktor:</span></li>
+
+            </ul>
+
+            
+          </div>
+          <div class="bottom">
+            <div class="rating">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half-o" aria-hidden="true"></i>
+              <i class="fa fa-star-o" aria-hidden="true"></i>
+            </div>
+            <div class="misc">
+              Fyndig titel
+            </div>
+          </div>
+          
+          
+
+        </div>
+          <img class="bild" src="{{person.bild_url_192}}">
+
+      </div>
+      <div class="extras">
+        <i class="fa  fa-info-circle fa-lg"></i>
+      </div>
+    </div>
+  </div>
+
 </div>
+
