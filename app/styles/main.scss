@@ -3,6 +3,8 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+$bgcol: #2A3033;
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -12,7 +14,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 body {
   padding: 0;
-  background: #333;
+  background: $bgcol;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -91,7 +93,10 @@ body {
   }
 }
 
+
+
 .politiker{
+  float:left;
   transition: all 0.5s ease;
   font-family: 'Abel', sans-serif;
   background-color: #ddd;
@@ -122,7 +127,7 @@ body {
   
   span{
     color: #fff;
-    background-color: #333;
+    background-color: $bgcol;
     width:30px;
     text-align: center;
     border-top-left-radius: 5px;
@@ -175,6 +180,24 @@ body {
     height:20px;
     background-color: #ddd;
   } 
+}
+
+.container{
+  min-width: 960px;
+}
+
+.extras{
+  float: left;
+  margin-left: 10px;
+  height: 100px;
+  width: 40px;
+  background-color: #1F2326;
+  color: #fff;
+  border-radius: 10px;
+  border-top-style: solid;
+  border-top-width:1px;
+  border-top-color: #16191B;
+
 }
 
 .selected{
