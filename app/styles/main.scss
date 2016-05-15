@@ -272,11 +272,12 @@ body {
     font-size: 14px;
   }
   select{
+    margin-left: 10px;
     appearance: none;
     text-align: center;
     //height:40px;
     display: inline-block;
-    padding:0px 15px;
+    padding:2px 15px;
     
     //width: 100%;
     //-webkit-appearance: none;
@@ -284,7 +285,7 @@ body {
     font-size: 14px;
     //font-weight: 700;
     background-color: #222;
-    border-color: #999;
+    border-color: #ccc;
     border-width: 1px;
     border-style: solid;
     border-radius: 5px;
@@ -328,8 +329,39 @@ body {
   border-width:1px;
   border-color: #ccc;
   padding: 2px 10px;
-  margin-left: 20px;
+  margin-left: 10px;
   margin-bottom: 10px;
+}
+.settings-button:hover{
+  background-color: #31373C;
+  color: #ccc;
+}
+.settings-button:active{
+  background-color: #31373C;
+  color: #fff;
+  border-color: #fff;
+}
+.settings-button:focus {outline:0;}
+
+.settings-button.active{
+  background-color: #ccc;
+  //border-color: #ccc;
+
+  color: #333;
+}
+.settings-button.active:hover{
+  background-color: #eee;
+  border-color: #eee;
+}
+.settings-button.active:active{
+  background-color: #eee;
+  border-color: #fff;
+  color: #666;
+}
+
+.settings-button + .inverse{
+  background-color: #fff;
+  color: #333;
 }
 
 .right{

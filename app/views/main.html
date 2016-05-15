@@ -22,8 +22,10 @@
           <option value="parti">parti</option>
           <option value="fodd_ar">ålder</option>
         </select>
-        {{wew}}
-        <input ng-model="searchtext"></input>
+        <button class="settings-button"><i class="fa fa-sort-alpha-asc" aria-hidden="true"></i></button>
+        <button class="settings-button active"><i class="fa fa-sort-alpha-asc" aria-hidden="true"></i></button>
+        <button class="settings-button inverse"><i class="fa fa-sort-alpha-asc" aria-hidden="true"></i></button>
+
       </div>
       <div class="partier">
         <ul>
@@ -58,12 +60,13 @@
     <div class="">
       <button ng-click="partier.selectNone()"class="settings-button right"><i class="fa fa-square-o" aria-hidden="true"></i> Avmarkera alla partier</button>
       <button ng-click="partier.selectAll()" class="settings-button right"><i class="fa fa-check-square-o" aria-hidden="true"></i> Markera alla partier</button>
+      <input ng-model="searchtext"></input>
 
     </div> 
   </div>
 
   <div class="col-md-6">
-    
+
     <div ng-repeat="person in dataset.personlista.person | orderBy: sorteringsVar | limitTo:350 | filter:searchtext" ng-if="isPartiSelected(person.parti)" class="">
       <div class="politiker" ng-click="select(person.intressent_id)" ng-class="{'selected': isSelected(person.intressent_id)}" >
         <div ng-class=person.parti class="parti">

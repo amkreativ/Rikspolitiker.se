@@ -23,8 +23,9 @@ angular.module('rksApp')
             var p = $scope.dataset.personlista.person[i];
             console.log(p.sorteringsnamn);
             //politiker[i].sorteringsnamn = p.sorteringsnamn;
-            var politiker = {}
+            var politiker = {};
             politiker.sorteringsnamn = p.sorteringsnamn;
+            politiker.intressent_id = p.intressent_id;
             politikerLista.push(politiker);
         }
         console.log(politikerLista);
@@ -41,27 +42,25 @@ angular.module('rksApp')
         M:{selected:false},
         KD:{selected:false},
         selectAll: function(){
-            $scope.partier['V'].selected = true;
-            $scope.partier['S'].selected = true;
-            $scope.partier['V'].selected = true;
-            $scope.partier['MP'].selected = true;
-            $scope.partier['SD'].selected = true;
-            $scope.partier['C'].selected = true;
-            $scope.partier['L'].selected = true;
-            $scope.partier['M'].selected = true;
-            $scope.partier['KD'].selected = true;
-            console.log('WEW LAD');
+            $scope.partier.V.selected = true;
+            $scope.partier.S.selected = true;
+            $scope.partier.MP.selected = true;
+            $scope.partier.SD.selected = true;
+            $scope.partier.C.selected = true;
+            $scope.partier.L.selected = true;
+            $scope.partier.M.selected = true;
+            $scope.partier.KD.selected = true;
+            //console.log('WEW LAD');
         },
         selectNone: function(){
-            $scope.partier['V'].selected = false;
-            $scope.partier['S'].selected = false;
-            $scope.partier['V'].selected = false;
-            $scope.partier['MP'].selected = false;
-            $scope.partier['SD'].selected = false;
-            $scope.partier['C'].selected = false;
-            $scope.partier['L'].selected = false;
-            $scope.partier['M'].selected = false;
-            $scope.partier['KD'].selected = false;
+            $scope.partier.V.selected = false;
+            $scope.partier.S.selected = false;
+            $scope.partier.MP.selected = false;
+            $scope.partier.SD.selected = false;
+            $scope.partier.C.selected = false;
+            $scope.partier.L.selected = false;
+            $scope.partier.M.selected = false;
+            $scope.partier.KD.selected = false;
         }
     };
 
