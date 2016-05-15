@@ -12,7 +12,7 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-    <script src="https://use.fontawesome.com/54b1fe405b.js"></script>
+    
 
     <!-- endbuild -->
   </head>
@@ -24,7 +24,7 @@
     <!-- Add your site or application content here -->
     <div class="pageheader">
         <div class="container">
-        <h1 class="rikspolitiker"><span class="title">RIKSPOLITIKER.SE</span><span class="subtitle"> - folkets främsta företrädare</span></h1>
+        <h1 class="rikspolitiker"><span class="title">RIKSPOLITIKER.SE</span><span class="subtitle"> - folkets främsta företrädare {{searchtext}}</span></h1>
 
           
         </div>
@@ -32,6 +32,7 @@
 
     <div class="container">
     <div ng-view=""></div>
+    <script src="https://use.fontawesome.com/54b1fe405b.js"></script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>

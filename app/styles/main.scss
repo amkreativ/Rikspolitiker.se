@@ -1,7 +1,6 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-@import url(https://fonts.googleapis.com/css?family=Anton);
 // endbower
 
 $bgcol: #2A3033;
@@ -75,7 +74,7 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 730px;
+    //max-width: 730px;
   }
 
   /* Remove the padding we set earlier */
@@ -194,7 +193,7 @@ body {
 }
 
 .container{
-  min-width: 960px;
+  //min-width: 960px;
 }
 
 .extras{
@@ -231,15 +230,244 @@ body {
 
 .settings{
   font-family: 'Abel', sans-serif;
-  width: 100%;
-  height: 400px;
+  //width: 100%;
+  min-height: 220px;
   background-color: #1F2326;
   color: #fff;
   border-radius: 10px;
   border-top-style: solid;
   border-top-width:1px;
   border-top-color: #16191B;
-  padding: 20px;
+  //padding: 20px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+
+}
+
+.settings-head{
+  margin:0;
+  padding:10px;
+  padding-left: 20px;
+  width:100%;
+  min-height: 30px;
+  background-color: #1B1F22;
+
+  h2{
+    margin:0;
+    //margin-left:20px;
+    color: #ccc;
+    font-size: 14px;
+    i{
+      font-size: 16px;
+      //margin-top:-10px;
+    }
+  }
+}
+
+.settings-body{
+  padding:20px;
+  width: 100%;
+  label{
+    font-size: 14px;
+  }
+  select{
+    appearance: none;
+    text-align: center;
+    //height:40px;
+    display: inline-block;
+    padding:0px 15px;
+    
+    //width: 100%;
+    //-webkit-appearance: none;
+    //color: #111;
+    font-size: 14px;
+    //font-weight: 700;
+    background-color: #222;
+    border-color: #999;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+
+  }
+  select:focus{
+    outline:0;
+  }
+  select:before {
+    /*
+    position: absolute;
+    content:"";
+    //font-family: FontAwesome;
+    background-color: #f00;
+    width: 10px;
+    height: 10px;
+    top:0;
+    left:0;
+    */
+
+  }
+  /*
+  input{
+    padding:20px;
+    width: 100%;
+    height: 35px;
+    background-color: #DDD;
+    color: #111;
+    border: none;
+    font-size: 18px;
+  }*/
+}
+
+.settings-button{
+  font-family: 'Abel', sans-serif;
+
+  background-color: #1F2326;
+  color: #aaa;
+  border-radius: 5px;
+  border-style: solid;
+  border-width:1px;
+  border-color: #ccc;
+  padding: 2px 10px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.right{
+  float: right;
+}
+
+.partier{
+  margin-top: 50px;
+  width: 100%;
+  bottom: -2px;
+  position: absolute;
+  ul{
+    white-space-collapsing:discard;
+    list-style-type: none;
+    padding-left: 0;
+    width: 100%;
+    margin:0;
+    li{
+      display: inline-block;
+      width: 12.6%;
+      margin-right:-4px;
+      button{
+
+        border-style:solid;
+        border-color: #000;
+        border-width:5px;
+        //box-sizing: border-box;
+        position: relative;
+        width: 100%;
+        margin:0;
+        border:0;
+        height: 40px;
+        /*
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        */
+        box-shadow:         0px -10px 0px 0px #222;
+        span{
+          text-align: center;
+          position: absolute;
+          top:0px;
+          left:0;
+          display: block;
+          font-size: 20px;
+          //background-color: rgba(0, 0, 0, 0.7);
+          color: #000;
+          height:30px;
+          padding-top: 5px;
+          //border-radius: 3px;
+          width: 100%;
+          height:100%;
+        }
+        
+
+      }
+      button::before{
+        position: absolute;
+        top: -15px;
+        border-radius: 5px;
+        left: 25%;
+        width:50%;
+        height:5px;
+        content: "";
+        background-color: #1a1a1a;
+      
+      }
+
+      button:hover{
+      }
+      button:hover::before{
+        background-color: #ccc;
+      }
+      button:active{
+        color: #f00;
+        //height: 200px;
+        box-shadow:         0px -5px 0px 0px #111;
+        bottom: -5px;
+        span{
+          background-color: transparent;
+          color: #fff;
+        }
+      }
+      button:active::before{
+        top: -20px;
+      }
+
+      button:focus {outline:0;}
+
+      .active{
+        top:3px;
+        box-shadow:         0px -3px 0px 0px #111;
+        span{
+          background-color: transparent;
+          color: #fff;
+          text-shadow: 0px 0px 20px #000;
+        }
+        //padding-top:0px;
+        //height:38px;
+      }
+
+      .active::before{
+        position: absolute;
+        top: -18px;
+        border-radius: 5px;
+        //left: 13px;
+        //width:20px;
+        height:5px;
+        content: "";
+        background-color: #fff;
+      }
+      .active:hover::before{
+        background-color: #fff;
+      }
+      
+      .active:active{
+        color: #000;
+        top: 5px;
+        span{
+          color: #222;
+        }
+      }
+      .active:active::before{
+        background-color: #fff;
+        top: -20px;
+      }
+    }
+  }
+}
+
+.navigation{
+  ul{
+    list-style-type: none;
+    padding-left: 0;
+    font-family: 'Abel', sans-serif;
+    li{
+      font-size: 20px;
+    }
+  }
 }
 
 .pageheader{
@@ -251,15 +479,16 @@ body {
 }
 
 .rikspolitiker{
-  padding-left:20px;
+  //padding-left:20px;
   .title{
     font-family: 'Anton', sans-serif;
     color:#BF2D89
   }
   .subtitle{
     font-family: 'Abel', sans-serif;
-    color:#FFF;
+    color:#DDD;
     font-size: 24px;
+    //margin-top: 10px;
   }
 }
 
@@ -296,248 +525,3 @@ body {
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAIAAAADnC86AAAAtklEQVRYhcXWMQ7DMAxDUda3yP3Pldm3KLoECBI4sSWRrPaPB2767DvS13tLt/myom7bNxkXVeQW19UMTFHDMEuNwUQ1AHPVVZiuLsEKdQ6L1AmsU99gqfoIq9UxbFAHsEe9wzb1AjvVEzarB+xXAbS/qKj8XBW195aEiypyi+tqBqaoYZilxmCiGoC56ipMV5dghTqHReoE1qlvsFR9hNXqGDaoA9ij3mGbeoGd6gmb1QP2qwB+3Bt42tS8IScAAAAASUVORK5CYII=);
 }
 
-//
-// Checkboxes
-// --------------------------------------------------
-
-
-$font-family-icon: 'FontAwesome' !default;
-$fa-var-check: "\f00c" !default;
-$check-icon: $fa-var-check !default;
-
-@mixin checkbox-variant($parent, $color) {
-  #{$parent} input[type="checkbox"]:checked + label,
-  #{$parent} input[type="radio"]:checked + label {
-    &::before {
-      background-color: $color;
-      border-color: $color;
-    }
-    &::after{
-      color: #fff;
-    }
-  }
-}
-
-@mixin checkbox-variant-indeterminate($parent, $color) {
-  #{$parent} input[type="checkbox"]:indeterminate + label,
-  #{$parent} input[type="radio"]:indeterminate + label {
-    &::before {
-      background-color: $color;
-      border-color: $color;
-    }
-    &::after{
-      background-color: #fff;
-    }
-  }
-}
-
-
-
-.checkbox{
-  padding-left: 20px;
-
-  label{
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    padding-left: 5px;
-
-    &::before{
-      content: "";
-      display: inline-block;
-      position: absolute;
-      width: 17px;
-      height: 17px;
-      left: 0;
-      margin-left: -20px;
-      border: 1px solid $input-border;
-      border-radius: 3px;
-      background-color: #fff;
-      @include transition(border 0.15s ease-in-out, color 0.15s ease-in-out);
-    }
-
-    &::after{
-      display: inline-block;
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      left: 0;
-      top: 0;
-      margin-left: -20px;
-      padding-left: 3px;
-      padding-top: 1px;
-      font-size: 11px;
-      color: $input-color;
-    }
-  }
-
-  input[type="checkbox"],
-  input[type="radio"] {
-    opacity: 0;
-    z-index: 1;
-
-    &:focus + label::before{
-      @include tab-focus();
-    }
-
-    &:checked + label::after{
-      font-family: $font-family-icon;
-      content: $check-icon;
-    }
-
-    &:indeterminate + label::after{
-      display: block;
-      content: "";
-      width: 10px;
-      height: 3px;
-      background-color: #555555;
-      border-radius: 2px;
-      margin-left: -16.5px;
-      margin-top: 7px;
-    }
-
-    &:disabled + label{
-      opacity: 0.65;
-
-      &::before{
-        background-color: $input-bg-disabled;
-        cursor: not-allowed;
-      }
-    }
-
-  }
-
-  &.checkbox-circle label::before{
-    border-radius: 50%;
-  }
-
-  &.checkbox-inline{
-    margin-top: 0;
-  }
-}
-
-@include checkbox-variant('.checkbox-primary', $brand-primary);
-@include checkbox-variant('.checkbox-danger', $brand-danger);
-@include checkbox-variant('.checkbox-info', $brand-info);
-@include checkbox-variant('.checkbox-warning', $brand-warning);
-@include checkbox-variant('.checkbox-success', $brand-success);
-
-
-@include checkbox-variant-indeterminate('.checkbox-primary', $brand-primary);
-@include checkbox-variant-indeterminate('.checkbox-danger', $brand-danger);
-@include checkbox-variant-indeterminate('.checkbox-info', $brand-info);
-@include checkbox-variant-indeterminate('.checkbox-warning', $brand-warning);
-@include checkbox-variant-indeterminate('.checkbox-success', $brand-success);
-
-//
-// Radios
-// --------------------------------------------------
-
-@mixin radio-variant($parent, $color) {
-  #{$parent} input[type="radio"]{
-    + label{
-      &::after{
-        background-color: $color;
-      }
-    }
-    &:checked + label{
-      &::before {
-        border-color: $color;
-      }
-      &::after{
-        background-color: $color;
-      }
-    }
-  }
-}
-
-.radio{
-  padding-left: 20px;
-
-  label{
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    padding-left: 5px;
-
-    &::before{
-      content: "";
-      display: inline-block;
-      position: absolute;
-      width: 17px;
-      height: 17px;
-      left: 0;
-      margin-left: -20px;
-      border: 1px solid $input-border;
-      border-radius: 50%;
-      background-color: #fff;
-      @include transition(border 0.15s ease-in-out);
-    }
-
-    &::after{
-      display: inline-block;
-      position: absolute;
-      content: " ";
-      width: 11px;
-      height: 11px;
-      left: 3px;
-      top: 3px;
-      margin-left: -20px;
-      border-radius: 50%;
-      background-color: $input-color;
-      @include scale(0, 0);
-
-      @include transition-transform(.1s cubic-bezier(.8,-0.33,.2,1.33));
-      //curve - http://cubic-bezier.com/#.8,-0.33,.2,1.33
-    }
-  }
-
-  input[type="radio"]{
-    opacity: 0;
-    z-index: 1;
-
-    &:focus + label::before{
-      @include tab-focus();
-    }
-
-    &:checked + label::after{
-      @include scale(1, 1);
-    }
-
-    &:disabled + label{
-      opacity: 0.65;
-
-      &::before{
-        cursor: not-allowed;
-      }
-    }
-
-  }
-
-  &.radio-inline{
-    margin-top: 0;
-  }
-}
-
-@include radio-variant('.radio-primary', $brand-primary);
-@include radio-variant('.radio-danger', $brand-danger);
-@include radio-variant('.radio-info', $brand-info);
-@include radio-variant('.radio-warning', $brand-warning);
-@include radio-variant('.radio-success', $brand-success);
-
-
-input[type="checkbox"],
-input[type="radio"] {
-  &.styled:checked + label:after {
-    font-family: $font-family-icon;
-    content: $check-icon;
-  }
-  .styled:checked + label {
-    &::before {
-      color: #fff;
-    }
-    &::after {
-      color: #fff;
-    }
-  }
-}

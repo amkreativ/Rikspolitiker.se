@@ -1,11 +1,70 @@
 <div class="row listan">
-  <div class="col-md-5">
-    <div class="settings">
-      <input></input>
+  <div class="col-md-2">
+    <div class="navigation">
+      <ul>
+        <li><a href=""></a>Rikspolitiker</li>
+        <li><a href=""></a>Kul fakta</li>
+        <li><a href=""></a>Topplistor</li>
+        <li><a href=""></a>Om Rikspolitiker.se</li>
+        <li><a href=""></a>Kontakt</li>
+      </ul>
     </div>
+
   </div>
-  <div class="col-md-7">
-    <div ng-repeat="person in dataset.personlista.person | orderBy:'sorteringsnamn' | limitTo:20" class="">
+  <div class="col-md-4">
+    <div class="settings">
+      
+      <div class="settings-body">
+        <label for="sortering">Sortera efter: </label>
+        <select ng-model="sorteringsVar" class="settings-select" id="sortering" name="sortering">
+          <option value="sorteringsnamn">efternamn</option>
+          <option value="tilltalsnamn">förnamn</option>
+          <option value="parti">parti</option>
+          <option value="fodd_ar">ålder</option>
+        </select>
+        {{wew}}
+        <input ng-model="searchtext"></input>
+      </div>
+      <div class="partier">
+        <ul>
+          <li>
+            <button ng-class="{active: isPartiSelected('V')}" ng-click="selectParti('V')" class="V"><span>V</span></button>
+          </li>
+          <li>
+            <button ng-class="{active: isPartiSelected('S')}" ng-click="selectParti('S')" class="S"><span>S</span></button>
+          </li>
+          <li>
+            <button ng-class="{active: isPartiSelected('MP')}" ng-click="selectParti('MP')" class="MP"><span>MP</span></button>
+          </li>
+          <li>
+            <button ng-class="{active: isPartiSelected('SD')}" ng-click="selectParti('SD')" class="SD"><span>SD</span></button>
+          </li>
+          <li>
+            <button ng-class="{active: isPartiSelected('C')}" ng-click="selectParti('C')" class="C"><span>C</span></button>
+          </li>
+          <li>
+            <button ng-class="{active: isPartiSelected('L')}" ng-click="selectParti('L')" class="L"><span>L</span></button>
+          </li>
+          <li>
+            <button ng-class="{active: isPartiSelected('M')}" ng-click="selectParti('M')" class="M"><span>M</span></button>
+          </li>
+          <li>
+            <button ng-class="{active: isPartiSelected('KD')}" ng-click="selectParti('KD')" class="KD"><span>KD</span></button>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+    <div class="">
+      <button ng-click="partier.selectNone()"class="settings-button right"><i class="fa fa-square-o" aria-hidden="true"></i> Avmarkera alla partier</button>
+      <button ng-click="partier.selectAll()" class="settings-button right"><i class="fa fa-check-square-o" aria-hidden="true"></i> Markera alla partier</button>
+
+    </div> 
+  </div>
+
+  <div class="col-md-6">
+    
+    <div ng-repeat="person in dataset.personlista.person | orderBy: sorteringsVar | limitTo:350 | filter:searchtext" ng-if="isPartiSelected(person.parti)" class="">
       <div class="politiker" ng-click="select(person.intressent_id)" ng-class="{'selected': isSelected(person.intressent_id)}" >
         <div ng-class=person.parti class="parti">
           <span>{{person.parti}}</span>
@@ -33,6 +92,7 @@
               <i class="fa fa-star" aria-hidden="true"></i>
               <i class="fa fa-star-half-o" aria-hidden="true"></i>
               <i class="fa fa-star-o" aria-hidden="true"></i>
+              3.5
             </div>
             <div class="misc">
               Fyndig titel
