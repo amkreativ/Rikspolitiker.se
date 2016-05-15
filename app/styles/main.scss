@@ -98,7 +98,7 @@ body {
 
 .politiker{
   float:left;
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
   font-family: 'Abel', sans-serif;
   background-color: #ddd;
   margin-bottom: 20px;
@@ -158,6 +158,9 @@ body {
     padding-left:10px;
     width: auto;
     h2{
+        font-size: 22px;
+        padding-top: 4px;
+        padding-bottom: 6px;
       margin:0;
       color: #333;
     }
@@ -290,6 +293,10 @@ body {
     border-style: solid;
     border-radius: 5px;
 
+  }
+  select:hover{
+    border-color: #fff;
+    background-color: #31373C;
   }
   select:focus{
     outline:0;
@@ -500,6 +507,13 @@ body {
       font-size: 20px;
     }
   }
+}
+
+.longname{
+  //background-color: #f00;
+  padding-top:5px;
+  padding-bottom: 5px;
+  font-size: 22px;
 }
 
 .pageheader{

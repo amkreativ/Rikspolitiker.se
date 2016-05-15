@@ -15,10 +15,12 @@ angular.module('rksApp')
       'Karma'
     ];
 
+    $scope.memes = 'aaa';
+
     $http.get('http://data.riksdagen.se/personlista/?iid=&fnamn=&enamn=&f_ar=&kn=&parti=&valkrets=&rdlstatus=&org=&utformat=json&termlista=').success(function(data) {
     	$scope.dataset = data;
     	console.log('Data fetched');
-        var politikerLista = [];
+        $scope.politikerLista = [];
         for (var i = $scope.dataset.personlista.person.length - 1; i >= 0; i--) {
             var p = $scope.dataset.personlista.person[i];
             console.log(p.sorteringsnamn);
@@ -26,9 +28,27 @@ angular.module('rksApp')
             var politiker = {};
             politiker.sorteringsnamn = p.sorteringsnamn;
             politiker.intressent_id = p.intressent_id;
-            politikerLista.push(politiker);
+            if (p.personuppgift != null) {
+                for (var j = p.personuppgift.uppgift.length - 1; j >= 0; j--) {
+                    if (p.personuppgift.uppgift[j].kod === 'sv' && p.personuppgift.uppgift[j].typ === 'titlar')
+                    {
+                        politiker.yrke = p.personuppgift.uppgift[j].uppgift;
+                        console.log(p.sorteringsnamn + ': ' + p.personuppgift.uppgift[j].uppgift);
+                    }
+                }
+            }
+            //politikerLista.push(politiker);
+            $scope.politikerLista[politiker.intressent_id] = politiker;
+            
         }
+        /*
         console.log(politikerLista);
+        console.log(politikerLista['0383111552218'].yrke);
+        console.log(politikerLista['0383111552218'].yrke);
+        var meme = politikerLista['0383111552218'].yrke;
+        console.log(meme);
+        */
+        //$scope.apply();
     });
 
 
@@ -61,6 +81,29 @@ angular.module('rksApp')
             $scope.partier.L.selected = false;
             $scope.partier.M.selected = false;
             $scope.partier.KD.selected = false;
+        }
+    };
+
+    $scope.isNameLong = function(fnamn,enamn){
+        var nameLength = fnamn.length + enamn.length
+        console.log('AAA' + nameLength);
+
+        return nameLength >= 20;
+    }
+
+    $scope.sorting = {
+        isAlphabetical: true,
+        isNumeric: false,
+        isDesc: false,
+        isAsc: true,
+        toggle: function(){
+            if ($scope.sorting.isDesc) {
+                $scope.sorting.isDesc = false;
+                $scope.sorting.isAsc = true;
+            } else {
+                $scope.sorting.isDesc = true;
+                $scope.sorting.isAsc = false;
+            }
         }
     };
 
