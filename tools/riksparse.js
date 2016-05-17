@@ -45,8 +45,6 @@ jsonfile.readFileSync(currentFile, function(err, obj) {
 
 var running = true;
 
-var baliCount = 0;
-
 var conseqFails = 0;
 
 var ledamoter = {};
@@ -62,12 +60,13 @@ var addWords = function(id, wordlist){
 		//console.log(currentWord);
 		if (!ledamoter[id].words.hasOwnProperty(currentWord.word)) {
 			
-			ledamoter[id].words[currentWord.word] = currentWord.count
+			ledamoter[id].words[currentWord.word] = currentWord.count;
 			//console.log('NY: ' + ledamoter[id].words[currentWord.word].word);
 		}else{
 			//console.log('REPEAT: ' + ledamoter[id].words[currentWord.word].count);
 			//console.log(ledamoter[id].words[currentWord.word] + ' ' + currentWord.count);
 			ledamoter[id].words[currentWord.word] = currentWord.count + ledamoter[id].words[currentWord.word];
+			ledamoter[id].totalWords = currentWord.count + ledamoter[id].totalWords;
 
 		}
 	}
@@ -92,13 +91,9 @@ var loops = 0;
 
 var writeStuff = function(){
 	console.log('WRITING');
-		var file = './../dataset/dataset.json';
+		var file = './../dataset/dataset2.json';
 		var spooky = ledamoter;
 		jsonfile.writeFileSync(file, spooky);
-}
-
-var wew = function(){
-
 }
 
 for (var i = folders.length - 1; i >= 0; i--) {
@@ -120,7 +115,7 @@ for (var i = folders.length - 1; i >= 0; i--) {
 
 			if (!ledamoter.hasOwnProperty(meme.anforande.intressent_id)) {
 				//ledamoter[meme.anforande.intressent_id] = 0;
-				ledamoter[meme.anforande.intressent_id] = {namn: meme.anforande.talare, len: 0, wordCount: 0, words: {} };
+				ledamoter[meme.anforande.intressent_id] = {namn: meme.anforande.talare, len: 0, totalWords: 0, wordCount: 0, words: {} };
 				console.log("DOOT");
 			}
 			//addWords(meme.anforande.intressent_id, frekvens);
@@ -149,92 +144,3 @@ for (var i = folders.length - 1; i >= 0; i--) {
 
 }
 writeStuff();
-/*
-while(running === true){
-	loops++;
-	console.log(loops);
-	//console.log(jsonfile.readFileSync(currentFile).avsnittsrubrik);
-	var currentFile = folders[1].folder + folders[1].start + currentIndex + '-' + currentSub + '.json';
-	//console.log('Does ' + currentFile + ' exist?');
-	if (fileExists(currentFile)) {
-		var meme = jsonfile.readFileSync(currentFile);
-		//console.log(meme.anforande.talare + '\t\t\t\t\t' +  meme.anforande.avsnittsrubrik);
-		currentSub++;
-		conseqFails = 0;
-		//running = false;
-		var cleantext = striptags(meme.anforande.anforandetext);
-		var frekvens = freq(cleantext);
-
-
-		if (!ledamoter.hasOwnProperty(meme.anforande.intressent_id)) {
-			//ledamoter[meme.anforande.intressent_id] = 0;
-			ledamoter[meme.anforande.intressent_id] = {namn: meme.anforande.talare, len: 0, wordCount: 0, words: {} };
-			console.log("DOOT");
-		}
-		//addWords(meme.anforande.intressent_id, frekvens);
-		ledamoter[meme.anforande.intressent_id].len += meme.anforande.anforandetext.length;
-
-		var newWords = words(ledamoter[meme.anforande.intressent_id].words, frekvens);
-		ledamoter[meme.anforande.intressent_id].words = newWords;
-		ledamoter[meme.anforande.intressent_id].wordCount = Object.keys(ledamoter[meme.anforande.intressent_id].words).length;
-
-		//console.log(ledamoter[meme.anforande.intressent_id].words);
-	}else{
-		conseqFails++;
-		currentIndex++;
-		resetSub();
-	}
-	if (conseqFails === 5) {
-		running = false;
-		writeStuff();
-	}
-
-	
-}
-*/
-
-//Object.keys(obj).length
-
-/*
-var loops = 0;
-
-while(running === true){
-	loops ++;
-	var currentFile = folder + start + currentIndex + '-' + currentSub + '.json';
-
-	if (fileExists(currentFile)) {
-
-	}else{
-		conseqFails++;
-		currentIndex++;
-		resetSub();
-	}
-	if (conseqFails === 5) {
-		running = false;
-	}
-}
-*/
-
-
-console.log('Bali: ' + baliCount + ' anföranden.');
-//console.log(ledamoter);
-console.log(Object.keys(ledamoter).length);
-var file2 = './data4.json';
-console.log(ledamoter['0760500234712'].words);
-jsonfile.writeFileSync(file2, ledamoter['0760500234712'].words);
-var wewlad = JSON.stringify(ledamoter);
-//console.log(wewlad);
-
-
-//console.log(JSON.stringify(ledamoter));
-
-//var file = './data2.json';
-//console.log("WAIT!");
-/*
-setTimeout(function(){
-	jsonfile.writeFile(file, ledamoter, function(err) {
-		console.log(err);
-		console.log("DONE!");
-	});
-}, 10000);
-*/
