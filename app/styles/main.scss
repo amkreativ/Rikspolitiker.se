@@ -20,7 +20,7 @@ $bgcol: #2A3033;
   width: 100%;
   .lft{
     flex-grow: 2;
-    background-color: #9D4740;
+    //background-color: #9D4740;
     //width: 200px;
     //max-width: 200px;
     min-height: 200px;
@@ -29,7 +29,7 @@ $bgcol: #2A3033;
   .mid{
     margin: 0 20px;
     flex-grow: 4;
-    background-color: #479D40;
+    //background-color: #479D40;
     //width: 200px;
     min-height: 200px;
     min-width:300px;
@@ -38,7 +38,7 @@ $bgcol: #2A3033;
   }
   .rgt{
     flex-grow: 6;
-    background-color: #479D9D;
+    //  background-color: #479D9D;
     min-width:300px;
     //width: 200px;
     min-height: 200px;
@@ -161,6 +161,7 @@ body {
 
 
 .politiker{
+  cursor: pointer;
   float:left;
   transition: all 0.2s ease;
   font-family: 'Abel', sans-serif;

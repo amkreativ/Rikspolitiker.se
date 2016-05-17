@@ -1,4 +1,5 @@
 'use strict';
+//var json = require('./data.json');
 
 /**
  * @ngdoc function
@@ -28,7 +29,7 @@ angular.module('rksApp')
             var politiker = {};
             politiker.sorteringsnamn = p.sorteringsnamn;
             politiker.intressent_id = p.intressent_id;
-            if (p.personuppgift != null) {
+            if (p.personuppgift !== null) {
                 for (var j = p.personuppgift.uppgift.length - 1; j >= 0; j--) {
                     if (p.personuppgift.uppgift[j].kod === 'sv' && p.personuppgift.uppgift[j].typ === 'titlar')
                     {
@@ -49,6 +50,12 @@ angular.module('rksApp')
         console.log(meme);
         */
         //$scope.apply();
+        $scope.ord = null;
+        $http.get('./data/ledamoter_ord250.json').success(function(data) {
+            $scope.ord = data;
+            console.log($scope.ord);
+
+        });
     });
 
 
@@ -85,11 +92,11 @@ angular.module('rksApp')
     };
 
     $scope.isNameLong = function(fnamn,enamn){
-        var nameLength = fnamn.length + enamn.length
+        var nameLength = fnamn.length + enamn.length;
         console.log('AAA' + nameLength);
 
         return nameLength >= 20;
-    }
+    };
 
     $scope.sorting = {
         isAlphabetical: true,

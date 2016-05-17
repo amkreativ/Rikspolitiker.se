@@ -1,5 +1,7 @@
 var jsonfile = require('jsonfile');
 var _ = require('lodash');
+var http = require('http');
+var request = require('request');
 
 var file = './../dataset/dataset.json';
 
@@ -12,6 +14,46 @@ var ledamoter = {};
 var ledamoter1000 = {};
 var ledamoter250 = {};
 var ledamoter100 = {};
+
+var partier = {
+	V: {},
+	S: {},
+	MP: {},
+	SD: {},
+	C: {},
+	L: {},
+	M: {},
+	KD: {}
+}
+
+var riksdagsAPI = 'http://data.riksdagen.se/personlista/?iid=&fnamn=&enamn=&f_ar=&kn=&parti=&valkrets=&rdlstatus=&org=&utformat=json&termlista=';
+
+var buildDataset = function(){
+	l = le.personlista.person;
+	//console.log(l[0]);
+	for (var i = l.length - 1; i >= 0; i--) {
+		var lm = l[i];
+		console.log(lm.sorteringsnamn);
+	}
+}
+
+var le = null;
+
+var getData = function(){
+	request(riksdagsAPI, function (error, response, json) {
+		if (!error && response.statusCode == 200) {
+			console.log(json);
+			var obj = JSON.parse(json);
+
+			var output = './../dataset/ledamoter_raw.json';
+			jsonfile.writeFileSync(output, obj);
+			le = obj;
+			buildDataset();
+		}
+	});
+}
+
+getData();
 
 //console.log(dataset['011731125914'].words.length);
 console.log(Object.keys(dataset['011731125914'].words).length);
@@ -52,6 +94,7 @@ for(var personID in dataset) {
 	//console.log('Total ord: ' + totalWords);
 
 	console.log(personID + '\tOrdlängd: ' + (totalLangd/antalOrd).toFixed(2)  + '\t\Tecken: ' + totalLangd + '\tUnika ord: ' + unikaOrd + '\tTotalt antal ord: ' + antalOrd + '\tVanligaste ordet: ' + vanligasteOrdet.ord + '\t' + person.namn);
+	/*
 	var ledamot = {
 		namn: person.namn,
 		ordlangd: (totalLangd/antalOrd).toFixed(2),
@@ -86,6 +129,7 @@ for(var personID in dataset) {
 	}
 
 
+
 	ledamoter[personID] = ledamot;
 	var output = './../dataset/ordkomplett/' + personID + '.json';
 	jsonfile.writeFileSync(output, ledamot);
@@ -101,10 +145,12 @@ for(var personID in dataset) {
 	ledamoter100[personID] = ledamot100;
 	var output = './../dataset/ordtop100/' + personID + '.json';
 	jsonfile.writeFileSync(output, ledamot100);
+	*/
 }
 
 var writeStuff = function(){
 	console.log('WRITING');
+	/*
 	var output = './../dataset/ledamoter_ord.json';
 	jsonfile.writeFileSync(output, ledamoter);
 
@@ -116,6 +162,7 @@ var writeStuff = function(){
 
 	var output = './../dataset/ledamoter_ord100.json';
 	jsonfile.writeFileSync(output, ledamoter100);
+	*/
 }
 
 writeStuff();
