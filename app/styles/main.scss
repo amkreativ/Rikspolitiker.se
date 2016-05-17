@@ -5,6 +5,53 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 $bgcol: #2A3033;
 
+.navibar{
+  width:20px;
+  height: 200px;
+  background-color: #f00;
+}
+
+.content{
+
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+
+  width: 100%;
+  .lft{
+    flex-grow: 2;
+    background-color: #9D4740;
+    //width: 200px;
+    //max-width: 200px;
+    min-height: 200px;
+    max-width:0px;
+  }
+  .mid{
+    margin: 0 20px;
+    flex-grow: 4;
+    background-color: #479D40;
+    //width: 200px;
+    min-height: 200px;
+    min-width:300px;
+    max-width: 300px;
+    //max-width: 200px;
+  }
+  .rgt{
+    flex-grow: 6;
+    background-color: #479D9D;
+    min-width:300px;
+    //width: 200px;
+    min-height: 200px;
+    max-width: 430px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    //max-width: 730px;
+  }
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -94,6 +141,23 @@ body {
   }
 }
 
+.roow{
+  display: flex;
+  flex-direction: row;
+}
+.leftbar{
+  flex-grow: 2;
+
+}
+.midbar{
+  flex-grow: 4;
+  //padding-left: 20px;
+  padding-right: 20px;
+}
+.rightbar{
+  flex-grow: 6;
+  min-width: 530px;
+}
 
 
 .politiker{
@@ -103,7 +167,7 @@ body {
   background-color: #ddd;
   margin-bottom: 20px;
   border-radius: 10px;
-  width: 400px;
+  width: 300px;
   height: 100px;
   clear: both;
   overflow: hidden;
@@ -112,6 +176,31 @@ body {
   border-bottom-color: #111;
 
 }
+
+@media screen and (min-width: 1000px) {
+
+  .lft{
+    max-width: auto;
+  }
+
+  .politiker{
+    width: 350px;
+  }
+
+  .info{
+    .bottom{
+      width:220px !important;
+    }
+    .bio{
+      .longname{
+        font-size: 22px !important;
+      }
+    }
+  }
+  
+}
+
+
 
 .parti{
   display: flex;
@@ -171,6 +260,12 @@ body {
       list-style-type: none;
       padding-left: 0;
     }
+    .longname{
+        //background-color: #f00;
+        padding-top:5px;
+        padding-bottom: 5px;
+        font-size: 14px;
+    }
   }
   .bottom{
     color: #333;
@@ -181,7 +276,7 @@ body {
     margin-left:10px;
     position: absolute;
     bottom:0px;
-    width:270px;
+    width:170px;
     height:20px;
     background-color: #ddd;
     .rating{
@@ -197,6 +292,13 @@ body {
 
 .container{
   //min-width: 960px;
+}
+
+.extras-container{
+  width:1px;
+  height:20px;
+  float:left;
+  //background-color: #f00;
 }
 
 .extras{
@@ -215,7 +317,7 @@ body {
 }
 
 .selected{
-  width:476px;
+  width:426px;
   transition: all 0.2s ease;
   height: 200px;
 }
@@ -233,7 +335,7 @@ body {
 
 .settings{
   font-family: 'Abel', sans-serif;
-  //width: 100%;
+  max-width: 400px;
   min-height: 220px;
   background-color: #1F2326;
   color: #fff;
@@ -269,7 +371,7 @@ body {
 }
 
 .settings-body{
-  padding:20px;
+  padding:15px;
   width: 100%;
   label{
     font-size: 14px;
@@ -336,7 +438,7 @@ body {
   border-width:1px;
   border-color: #ccc;
   padding: 2px 10px;
-  margin-left: 10px;
+  margin-left: 5px;
   margin-bottom: 10px;
 }
 .settings-button:hover{
@@ -513,7 +615,7 @@ body {
   //background-color: #f00;
   padding-top:5px;
   padding-bottom: 5px;
-  font-size: 22px;
+  font-size: 16px;
 }
 
 .pageheader{
