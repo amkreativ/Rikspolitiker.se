@@ -1,110 +1,105 @@
-<div class="content">
-  <div class="mid">
-    <div class="settings">
-      
-      <div class="settings-body">
-
-        <label for="sortering">Sortera efter: </label>
-        <select ng-model="sorteringsVar" class="settings-select" id="sortering" name="sortering">
-          <option value="sorteringsnamn">efternamn</option>
-          <option value="tilltalsnamn">förnamn</option>
-          <option value="parti">parti</option>
-          <option value="fodd_ar">ålder</option>
-        </select>
-        <button ng-click="sorting.toggle()" class="settings-button">
-          <i ng-if="sorting.isAsc && sorting.isAlphabetical" class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
-          <i ng-if="sorting.isDesc && sorting.isAlphabetical" class="fa fa-sort-alpha-desc" aria-hidden="true"></i>
-          <i ng-if="sorting.isAsc && sorting.isNumeric" class="fa fa-sort-numeric-asc" aria-hidden="true"></i>
-          <i ng-if="sorting.isDesc && sorting.isNumeric" class="fa fa-sort-numeric-desc" aria-hidden="true"></i>
-
-        </button>
-        
-      
-
+<div ng-class="{min: dataView.isActive}" class="noot">
+  <div class="container">
+    <div class="hero">
+      <div class="inner">
+        <h1>Datadriven granskning av riksdagen.</h1>
+        <p>Här hittar du information om våra kära folkvalda politiker. All information är automatiskt generererad direkt från <a href="http://data.riksdagen.se/">riksdagens öppna data</a>.</p>
+        <p>Informationen inkluderar bland annat ledamöternas ordförråd, aktivitet, närvaro och mycket mer.</p>
+        <p>Målet är att presentera svåröverblickbar information på ett tydligt och underhållande sätt och att få fler intresserade av riksdagens demokratiska arbete.</p>  
       </div>
-
-      <div class="partier">
-        <ul>
-          <li>
-            <button ng-class="{active: isPartiSelected('V')}" ng-click="selectParti('V')" class="V"><span>V</span></button>
-          </li>
-          <li>
-            <button ng-class="{active: isPartiSelected('S')}" ng-click="selectParti('S')" class="S"><span>S</span></button>
-          </li>
-          <li>
-            <button ng-class="{active: isPartiSelected('MP')}" ng-click="selectParti('MP')" class="MP"><span>MP</span></button>
-          </li>
-          <li>
-            <button ng-class="{active: isPartiSelected('SD')}" ng-click="selectParti('SD')" class="SD"><span>SD</span></button>
-          </li>
-          <li>
-            <button ng-class="{active: isPartiSelected('C')}" ng-click="selectParti('C')" class="C"><span>C</span></button>
-          </li>
-          <li>
-            <button ng-class="{active: isPartiSelected('L')}" ng-click="selectParti('L')" class="L"><span>L</span></button>
-          </li>
-          <li>
-            <button ng-class="{active: isPartiSelected('M')}" ng-click="selectParti('M')" class="M"><span>M</span></button>
-          </li>
-          <li>
-            <button ng-class="{active: isPartiSelected('KD')}" ng-click="selectParti('KD')" class="KD"><span>KD</span></button>
-          </li>
-
-        </ul>
-      </div>
-
-    </div>
-    <button ng-click="partier.selectNone()"class="settings-button right"><i class="fa fa-square-o" aria-hidden="true"></i> Avmarkera alla partier</button>
-      <button ng-click="partier.selectAll()" class="settings-button right"><i class="fa fa-check-square-o" aria-hidden="true"></i> Markera alla partier</button>
-  </div>
-  <div class="rgt">
-    <div ng-repeat="person in dataset.personlista.person | orderBy: sorteringsVar: sorting.isDesc | limitTo:350 | filter:searchtext" ng-if="isPartiSelected(person.parti)" class="">
-      <div class="politiker" ng-click="select(person.intressent_id)" ng-class="{'selected': isSelected(person.intressent_id)}" >
-        <div ng-class=person.parti class="parti">
-          <span>{{person.parti}}</span>
-        </div>
-        <div class="info">
-          <div class="bio">
-            <h2 ng-class="{longname: isNameLong(person.tilltalsnamn,person.efternamn)}">{{person.tilltalsnamn}} {{person.efternamn}}</h2>
-            <ul>
-              <li><span>{{2016 - person.fodd_ar}} år</span><span>{{person.valkrets}}</span></li>
-              <li><span>{{politikerLista[person.intressent_id].yrke}}</span></li>
-              <li><span>Kammaraktivitet: {{ord[person.intressent_id].tecken/1000 | number : 0}}</span></li>
-              <li><span>Ordförråd: {{ord[person.intressent_id].unikaOrd}} ord</span></li>
-              <li><span>Ordlängd: {{ord[person.intressent_id].ordlangd}}</span></li>
-              <li><span>Frånvaro:</span></li>
-              <li><span>Kaosfaktor:</span></li>
-
-            </ul>
-
-            
-          </div>
-          <div class="bottom">
-            <div class="rating">
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star-half-o" aria-hidden="true"></i>
-              <i class="fa fa-star-o" aria-hidden="true"></i>
-              3.5
-            </div>
-            <div class="misc">
-              Fyndig titel
-            </div>
-          </div>
-          
-          
-
-        </div>
-          <img class="bild" src="{{person.bild_url_192}}">
-
-      </div>
-      <div class="extras-container">
-        <div class="extras">
-          <i class="fa  fa-info-circle fa-lg"></i>
-        </div>
-      </div>
-      
+      <button ng-click="dataView.deactivate()" class="home"><i class="fa fa-home" aria-hidden="true"></i>
+</button>
+      <button ng-click="dataView.activate()" class="main">Partier</button>
+      <button ng-click="" class="main">Ledamöter</button>
     </div>
   </div>
+  
+</div>
+<div class="dataheader">
+  <div class="container">
+    <div ng-if="dataView.isActive" class="partisettings slide">
+      <span class=""><h2>PARTIER</h2></span>
+      <ul>
+        <li ng-repeat="(key, parti) in partidata">
+          <button ng-click="dataView.selectParti(key)" ng-class="{active: dataView.isActiveParti(key), hidetext: dataView.hasActiveParti()}" class="partiinfo">
+            <div class="parti {{key}}"><span>{{key}}</span></div>
+            <div class="partistats">
+              <span>{{partinamn[key]}}</span>
+            </div>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div ng-if="dataView.hasActiveParti() && dataView.isActive" class="slideright partiinformation">
+      <div class="partiinformationinner">
+        <div class="partifarg {{dataView.activeParti}}">
+          
+        </div>
+        <div class="partibio">
+          <h3>{{partinamn[dataView.activeParti]}}</h3>
+          <ul class="">
+            <li>123</li>
+            <li>456</li>
+            <li>789</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="noot kategorier">
+  <div class="container">
+    <div class="box">
+      memes
+    </div>
+    <div class="box">
+      memes
+    </div>
+  </div>
+</div>
+<div class="noot kategorier">
+  <div class="debug">
+    <table class="table">
+        <tr>
+          <th>Ord</th>
+          <th>V</th>
+          <th>S</th>
+          <th>MP</th>
+          <th>SD</th>
+          <th>C</th>
+          <th>L</th>
+          <th>M</th>
+          <th>KD</th>
+        </tr>
+        <tr ng-repeat="ord in vardeord">
+          <td>{{ord}}</td>
+          <td ng-repeat="(key, parti) in partidata">
+            {{parti.ordlista[parti.ord[ord]].antal / parti.antalOrd * 10000 | number : 2}}
+          </td>
+        </tr>
+      </table>
+  </div>
+  <div class="debug">
+    <table class="table">
+        <tr>
+          <th>Ord</th>
+          <th>V</th>
+          <th>S</th>
+          <th>MP</th>
+          <th>SD</th>
+          <th>C</th>
+          <th>L</th>
+          <th>M</th>
+          <th>KD</th>
+        </tr>
+        <tr ng-repeat="ord in ordlista">
+          <td>{{ord}}</td>
+          <td ng-repeat="(key, parti) in partidata">
+            {{parti.ordlista[parti.ord[ord]].antal / parti.antalOrd * 10000 | number : 2}}
+          </td>
+        </tr>
+      </table>
+  </div>
+
 </div>

@@ -1,3 +1,5 @@
+// Nuvarande kodstatus: Clusterfuck/10
+
 var jsonfile = require('jsonfile');
 var _ = require('lodash');
 var http = require('http');
@@ -16,28 +18,40 @@ var ledamoter250 = {};
 var ledamoter100 = {};
 
 var partier = {
-	V: {tecken:0, antalOrd:0, ord: {}},
-	S: {tecken:0, antalOrd:0, ord: {}},
-	MP: {tecken:0, antalOrd:0, ord: {}},
-	SD: {tecken:0, antalOrd:0, ord: {}},
-	C: {tecken:0, antalOrd:0, ord: {}},
-	L: {tecken:0, antalOrd:0, ord: {}},
-	M: {tecken:0, antalOrd:0, ord: {}},
-	KD: {tecken:0, antalOrd:0, ord: {}}
-}
+	V: {tecken:0, antalOrd:0, unikaOrd:0, ord: {}, ordlista:[]},
+	S: {tecken:0, antalOrd:0, unikaOrd:0, ord: {}, ordlista:[]},
+	MP: {tecken:0, antalOrd:0, unikaOrd:0, ord: {}, ordlista:[]},
+	SD: {tecken:0, antalOrd:0, unikaOrd:0, ord: {}, ordlista:[]},
+	C: {tecken:0, antalOrd:0, unikaOrd:0, ord: {}, ordlista:[]},
+	L: {tecken:0, antalOrd:0, unikaOrd:0, ord: {}, ordlista:[]},
+	M: {tecken:0, antalOrd:0, unikaOrd:0, ord: {}, ordlista:[]},
+	KD: {tecken:0, antalOrd:0, unikaOrd:0, ord: {}, ordlista:[]}
+};
+
+var aktivitet = {
+	V: {},
+	S: {},
+	MP: {},
+	SD: {},
+	C: {},
+	L: {},
+	M: {},
+	KD: {}
+};
 
 var riksdagsAPI = 'http://data.riksdagen.se/personlista/?iid=&fnamn=&enamn=&f_ar=&kn=&parti=&valkrets=&rdlstatus=&org=&utformat=json&termlista=';
 
 var politikerLista = {};
 
 var partiOrd = function(parti,ord){
+	partier[parti].antalOrd += ord.antal;
 	//console.log(parti + ' ' + ord.ord);
 	if (partier[parti].ord.hasOwnProperty(ord.ord)) {
 		partier[parti].ord[ord.ord] += ord.antal;
 		//partier[parti].tecken += ord.ord.length * ord.antal;
 	}else{
 		partier[parti].ord[ord.ord] = ord.antal;
-		partier[parti].antalOrd++;
+		partier[parti].unikaOrd++;
 		//partier[parti].tecken = ord.ord.length * ord.antal;
 	}
 };
@@ -99,6 +113,22 @@ var buildDataset = function(){
 
 
 	}
+	for(var parti in partier) {
+		console.log('Parti: ' + parti);
+		for(var ord in partier[parti].ord){
+			var ordet = {
+				ord: ord,
+				antal: partier[parti].ord[ord]
+			};
+			partier[parti].ordlista.push(ordet);
+		}
+		partier[parti].ordlista = _.sortBy(partier[parti].ordlista, ['antal', 'ord']).reverse().slice(0, 10000);
+		partier[parti].ord = {};
+		for (var m = 0; m < partier[parti].ordlista.length; m++) {
+			partier[parti].ord[partier[parti].ordlista[m].ord] = m;
+		}
+	}
+
 	//console.log(politikerLista);
 	console.log(partier);
 	var partierdoc = './../dataset/wew.json';

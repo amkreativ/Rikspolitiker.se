@@ -16,6 +16,94 @@ angular.module('rksApp')
       'Karma'
     ];
 
+    $scope.partinamn = {
+        V: 'Vänsterpartiet',
+        S: 'Socialdemokraterna',
+        MP: 'Miljöpartiet',
+        SD: 'Sverigedemokraterna',
+        C: 'Centerpartiet',
+        L: 'Liberalerna',
+        M: 'Moderaterna',
+        KD: 'Kristdemokratena'
+    };
+
+    $scope.vardeord = [
+        'att',
+        'fruktansvärt',
+        'hemskt',
+        'oerhört',
+        'enormt',
+        'absolut',
+        'kvinnor',
+        'feministisk',
+        'män',
+        'kön',
+        'utbildning',
+
+    ];
+
+    $scope.ordlista = [
+        'skolan',
+        'vården',
+        'arbete',
+        'sysselsättning',
+        'invandring',
+        'integration',
+        'äldreomsorg',
+        'omsorg',
+        'ekonomi',
+        'transport',
+        'miljö',
+        'pension',
+        'sociala',
+        'bostad',
+        'försvaret',
+        'säkerhet',
+        'nato',
+        'ordning',
+        'polisen',
+        'barn',
+        'skatter',
+        'infrastruktur',
+        'energi',
+        'utrikes',
+        'företagande',
+        'eu',
+        'handel'
+    ];
+
+    $scope.dataView = {
+        isActive: false,
+        activate: function(){
+            $scope.dataView.isActive = true;
+        },
+        deactivate: function(){
+            $scope.dataView.isActive = false;
+        },
+        activeParti: '',
+        selectParti: function(parti){
+            $scope.dataView.activeParti = parti;
+            //$scope.dataView.activeParti = 'parti';
+        },
+        hasActiveParti: function(){
+            if ($scope.dataView.activeParti != '') {
+                return true;
+            }else{
+                return false;
+            }
+        },
+        isActiveParti: function(parti){
+            if ($scope.dataView.activeParti == parti) {
+                console.log(parti);
+                return true;
+            }else{
+                return false;
+            }
+        }
+    };
+
+
+
     $scope.memes = 'aaa';
 
     $http.get('http://data.riksdagen.se/personlista/?iid=&fnamn=&enamn=&f_ar=&kn=&parti=&valkrets=&rdlstatus=&org=&utformat=json&termlista=').success(function(data) {
@@ -56,8 +144,14 @@ angular.module('rksApp')
             console.log($scope.ord);
 
         });
-    });
 
+        
+    });
+    $http.get('./data/partier.json').success(function(data) {
+            $scope.partidata = data;
+            //console.log($scope.ord);
+
+        });
 
     $scope.partier = {
         V:{selected:false},
