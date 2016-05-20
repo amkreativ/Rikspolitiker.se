@@ -5,21 +5,25 @@
         <h1>Datadriven granskning av riksdagen.</h1>
         <p>Här hittar du information om våra kära folkvalda politiker. All information är automatiskt generererad direkt från <a href="http://data.riksdagen.se/">riksdagens öppna data</a>.</p>
         <p>Informationen inkluderar bland annat ledamöternas ordförråd, aktivitet, närvaro och mycket mer.</p>
-        <p>Målet är att presentera svåröverblickbar information på ett tydligt och underhållande sätt och att få fler intresserade av riksdagens demokratiska arbete.</p>  
+        <p>Målet är att presentera svåröverblickbar information på ett tydligt och underhållande sätt och att skapa intresse för riksdagens demokratiska arbete.</p>  
       </div>
-      <button ng-click="dataView.deactivate()" class="home"><i class="fa fa-home" aria-hidden="true"></i>
+      <div class="buttons">
+        <button ng-click="dataView.deactivate()" class="home"><i class="fa fa-home" aria-hidden="true"></i>
 </button>
       <button ng-click="dataView.activate()" class="main">Partier</button>
-      <button ng-click="" class="main">Ledamöter</button>
+      <button ng-click="" class="main">Ledamöter</button>  
+      </div>
+      
     </div>
   </div>
   
 </div>
 <div class="dataheader">
-  <div class="container">
-    <div ng-if="dataView.isActive" class="partisettings slide">
-      <span class=""><h2>PARTIER</h2></span>
-      <ul>
+  <div class="container particontainer">
+  <span ng-show="dataView.isActive" class="rubrik"><h2>PARTIER</h2></span>
+    <div ng-show="dataView.isActive" class="partisettings">
+      
+      <ul class="slide">
         <li ng-repeat="(key, parti) in partidata">
           <button ng-click="dataView.selectParti(key)" ng-class="{active: dataView.isActiveParti(key), hidetext: dataView.hasActiveParti()}" class="partiinfo">
             <div class="parti {{key}}"><span>{{key}}</span></div>
@@ -30,8 +34,8 @@
         </li>
       </ul>
     </div>
-    <div ng-if="dataView.hasActiveParti() && dataView.isActive" class="slideright partiinformation">
-      <div class="partiinformationinner">
+    <div ng-show="dataView.hasActiveParti() && dataView.isActive" class="slideright partiinformation">
+      <div animate-on-change="dataView.activeParti" class="partiinformationinner">
         <div class="partifarg {{dataView.activeParti}}">
           
         </div>
@@ -42,7 +46,27 @@
             <li>456</li>
             <li>789</li>
           </ul>
+          <div class="bottom">
+          <!--
+            <div class="dots">
+              <div class="dot V">A</div>
+              <div class="dot V">A</div>
+              <div class="dot V">A</div>
+              <div class="dot V">A</div>
+              <div class="dot V">A</div>
+            </div>
+            --> 
+            <div class="shareinfo">
+              <span class="lefti">{{antalLedamoter[dataView.activeParti]}} ledamöter</span>
+              <span class="righti">{{getShare(dataView.activeParti) | number: 1}} % av platserna</span>  
+            </div>
+            
+            <div class="share">
+              <div ng-style="{width: getShare(dataView.activeParti) + '%'}" class="partishare {{dataView.activeParti}}"></div>
+            </div>
+          </div>
         </div>
+        <div class="partiextra"></div>
       </div>
     </div>
 

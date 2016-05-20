@@ -27,6 +27,21 @@ angular.module('rksApp')
         KD: 'Kristdemokratena'
     };
 
+    $scope.antalLedamoter = {
+        V: 21,
+        S: 113,
+        MP: 25,
+        SD: 48,
+        C: 22,
+        L: 19,
+        M: 84,
+        KD: 16
+    };
+
+    $scope.getShare = function(parti){
+        return $scope.antalLedamoter[parti] / 349 * 100;
+    }
+
     $scope.vardeord = [
         'att',
         'fruktansvärt',
@@ -79,6 +94,7 @@ angular.module('rksApp')
         },
         deactivate: function(){
             $scope.dataView.isActive = false;
+            $scope.dataView.activeParti = '';
         },
         activeParti: '',
         selectParti: function(parti){
@@ -271,4 +287,17 @@ angular.module('rksApp')
     			return 'm';    	}
 };
 */
-  }]);
+  }])
+.directive('animateOnChange', function($timeout) {
+  return function(scope, element, attr) {
+    scope.$watch(attr.animateOnChange, function(nv,ov) {
+      if (nv!=ov) {
+        element.addClass('changed');
+
+        $timeout(function() {
+          element.removeClass('changed');
+        }, 200); // Could be enhanced to take duration as a parameter
+      }
+    });
+  };
+});

@@ -4,7 +4,22 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // endbower
 
 $bgcol: #2A3033;
+@import url(https://fonts.googleapis.com/css?family=Abel);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu);
+@import url(https://fonts.googleapis.com/css?family=Anton);
 
+span.rubrik{
+  h2{
+    font-family: 'Abel', 'Avenir Next Condensed', sans-serif;
+    color:#FF42B9;
+    /*
+    border-bottom-style: solid;
+    border-bottom-width: 10px;
+    border-bottom-color: #eee;
+    */
+  }
+  margin-bottom: 40px;
+}
 
 .noot{
   transition: all 0.4s ease-in;
@@ -30,42 +45,54 @@ $bgcol: #2A3033;
     transition: all 0.4s ease-in;
     width: 100%;
 
+    padding: 40px 0;
     padding: 80px 0;
-    padding-bottom: 80px;
+    //padding-bottom: 80px;
     margin-top: 0px;
     .inner{
+      min-height: 300px;
       margin-top: 0px;
       transition: all 0.4s ease-in;
       max-height: 250px;
+      margin-bottom:100px;
+
     }
     h1{
       transition: all 0.2s ease-in;
       max-height: 80px;
-      font-family: 'Abel', sans-serif;
+      font-family: 'Abel', 'Avenir Next Condensed', sans-serif;
       color: #333;
-      font-size: 24px;
-      margin-bottom: 95px;
+      font-size: 36px;
+      margin-bottom: 60px;
       margin-top: 0px;
+      max-width: 700px;
     }
     p{
+      //max-width: 500px;
+      font-size: 15px;
       max-width: 500px;
-      font-size: 13px;
+      text-align: justify;
+      text-justify: inter-word;
 
     }
-    button{
-      border:0;
-      transition: margin-right 0.4s ease-in;
-      margin-top: 20px;
-      margin-right: 20px;
-      outline:0;
-      width: 120px;
-    }
-    button.home{
-      transition: all 0.4s ease-in;
-      width: 40px;
-      margin-left: -40px;
-      margin-right:0px;
+    .buttons{
+      position: relative;
+      bottom:0;
+      button{
+        border:0;
+        transition: margin-right 0.4s ease-in;
+        margin-top: 20px;
+        margin-right: 20px;
+        outline:0;
+        width: 120px;
+      }
+      button.home{
+        transition: all 0.4s ease-in;
+        width: 40px;
+        margin-left: -40px;
+        margin-right:0px;
 
+      }
     }
   }
 }
@@ -73,12 +100,13 @@ $bgcol: #2A3033;
 @media screen and (min-width: 768px) {
   .noot{
     .hero{
+      padding: 80px 0;
       h1{
         font-size: 48px;
         margin-bottom: 40px;
       }
       p{
-        font-size: 14px;
+        font-size: 15px;
       }
     }
   }
@@ -90,22 +118,29 @@ $bgcol: #2A3033;
     padding:0;
     .inner{
       //max-height: 0px;
-      margin-top: -280px;
+      margin-top: -420px;
     }
-    button{
-      margin-right: 0px;
-      border-radius: 0;
-      text-align: center;
+    .buttons{
+      button{
+        margin-right: 0px;
+        border-radius: 0;
+        text-align: center;
+      }
+      button.home{
+        pointer-events: auto;
+        margin-left: 0px;
+        //margin-right: 0px;
+        background-color: #2C6DFF;
+      }
     }
-    button.home{
-      pointer-events: auto;
-      margin-left: 0px;
-      //margin-right: 0px;
-      background-color: #2C6DFF;
-    }
+    
 
 
   }
+}
+
+.particontainer{
+  height: 800px;
 }
 
 .kategorier{
@@ -158,13 +193,14 @@ button.home:hover{
   background-color: #3A3E48;
   color: #eee;
   .partisettings{
+    margin-top: 10px;
     float:left;
     width: 30%;
     min-width: 250px;
     //background-color: #353943;
     span{
       h2{
-        font-family: 'Abel', sans-serif;
+        font-family: 'Abel', 'Avenir Next Condensed', sans-serif;
         color:#FF42B9;
         border-bottom-style: solid;
         border-bottom-width: 2px;
@@ -202,7 +238,7 @@ button.home:hover{
         span{
           //display: none;
           font-size: 20px;
-          font-family: 'Abel', sans-serif;
+          font-family: 'Abel', 'Avenir Next Condensed', sans-serif;
           margin-top:3px;
           color: #eee;
           //display: none;
@@ -246,7 +282,7 @@ button.home:hover{
   
 
   .partiinformation{
-    margin-top: 63px;
+    margin-top: 10px;
     float: right;
     position: relative;
     right:0;
@@ -254,6 +290,7 @@ button.home:hover{
     height: 460px;
     background-color: #eee;
     .partiinformationinner{
+      overflow: hidden;
       transition: all 0.2s ease;
       width:850%;
       //max-width: 600px;
@@ -263,29 +300,88 @@ button.home:hover{
       height:460px;
       background-color: #eee;
       .partifarg{
-        float:left;
+        position:absolute;
+        transition: all 0.2s;
+        //float:left;
+        left:0;
         height: 100%;
         width: 10px;
         margin-left:10px;
       }
       .partibio{
+        font-size: 16px;
+        margin-left:20px;
         padding: 20px;
+        padding-right:40px;
         float:left;
         height: 100%;
-        width:80%;
+        width:100%;
         color: #333;
         h3{
+          transition: all 0.2s;
           margin:0;
-          font-family: 'Abel', sans-serif;
+          font-family: 'Abel', 'Avenir Next Condensed', sans-serif;
           font-size: 24px;
           margin-bottom: 20px;
         }
         ul{
+          transition: all 0.2s;
           padding-left: 0;
           list-style-type: none;
-          font-family: 'Ubuntu', sans-serif;
-          font-family: 'Abel', sans-serif;
+          //font-family: 'Ubuntu', sans-serif;
+          font-family: 'Abel', 'Avenir Next Condensed', sans-serif;
         }
+        .bottom{
+          position: absolute;
+          font-family: 'Abel', 'Avenir Next Condensed', sans-serif;
+          bottom:20px;
+          left:0px;
+          padding-left:40px;
+          padding-right: 20px;
+          //height: 50px;
+          width: 100%;
+          margin-right:40px;
+          //background-color: #ddd;
+          .dot{
+            color: #fff;
+            width:20px;
+            height:20px;
+            //float:left;
+          }
+          .shareinfo{
+
+            width:100%;
+            height:20px;
+            span.lefti{
+              margin-left: 40px;
+              position: absolute;
+              left:0;
+            }
+            span.righti{
+              margin-right: 20px;
+              position: absolute;
+              right:0;
+            }
+          }
+          
+          .share{
+
+            width: 100%;
+            height: 20px;
+            background-color: #ddd;
+            .partishare{
+              transition: all 0.2s ease;
+              //width:10%;
+              height: 100%;
+            }
+          }
+        }
+      }
+      .partiextra{
+        width:20px;
+        float:right;
+        background-color: #fff;
+        height: 100%;
       }
     }
   }
@@ -306,7 +402,7 @@ button.home:hover{
             display: inline;
 
             font-size: 20px;
-            font-family: 'Abel', sans-serif;
+            font-family: 'Abel', 'Avenir Next Condensed', sans-serif;
             margin-top:3px;
             color: #eee;
           }
@@ -329,6 +425,11 @@ button.home:hover{
       .partiinformationinner{
         width: 600%;
         right: 500%;
+        .partibio{
+          h3{
+            font-size: 36px;
+          }
+        }
       }
     }
   }
@@ -535,7 +636,7 @@ body {
   cursor: pointer;
   float:left;
   transition: all 0.2s ease;
-  font-family: 'Abel', sans-serif;
+  font-family: 'Abel', 'Avenir Next Condensed', sans-serif;
   background-color: #ddd;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -707,7 +808,7 @@ body {
 }
 
 .settings{
-  font-family: 'Abel', sans-serif;
+  font-family: 'Abel', 'Avenir Next Condensed', sans-serif;
   max-width: 400px;
   min-height: 220px;
   background-color: #1F2326;
@@ -977,7 +1078,7 @@ body {
   ul{
     list-style-type: none;
     padding-left: 0;
-    font-family: 'Abel', sans-serif;
+    font-family: 'Abel', 'Avenir Next Condensed', sans-serif;
     li{
       font-size: 20px;
     }
@@ -1006,7 +1107,7 @@ body {
     color:#FF42B9
   }
   .subtitle{
-    font-family: 'Abel', sans-serif;
+    font-family: 'Abel', 'Avenir Next Condensed', sans-serif;
     color:#DDD;
     font-size: 24px;
     //margin-top: 10px;
@@ -1046,3 +1147,32 @@ body {
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAIAAAADnC86AAAAtklEQVRYhcXWMQ7DMAxDUda3yP3Pldm3KLoECBI4sSWRrPaPB2767DvS13tLt/myom7bNxkXVeQW19UMTFHDMEuNwUQ1AHPVVZiuLsEKdQ6L1AmsU99gqfoIq9UxbFAHsEe9wzb1AjvVEzarB+xXAbS/qKj8XBW195aEiypyi+tqBqaoYZilxmCiGoC56ipMV5dghTqHReoE1qlvsFR9hNXqGDaoA9ij3mGbeoGd6gmb1QP2qwB+3Bt42tS8IScAAAAASUVORK5CYII=);
 }
 
+.partiinformationinner[animate-on-change] {
+  transition: all 0.2s;
+  //-webkit-transition: all 0.2s;
+
+}
+.partiinformationinner[animate-on-change].changed {
+  //background-color: red;
+  //margin-right: 20%;
+  //opacity:0;
+  //transition: none;
+  //-webkit-transition: none;
+  .partifarg{
+    opacity:0;
+    transition: none;
+    margin-left: -10px;
+
+  }
+  .partibio{
+    h3{
+      opacity:0;
+      transition: none;
+    }
+    ul{
+      opacity:0;
+      transition: none;
+    }
+    //background-color: #f00;
+  }
+}
