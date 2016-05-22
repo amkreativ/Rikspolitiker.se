@@ -56,6 +56,7 @@ var addWords = function(id, wordlist){
 	for (var i = wordlist.length - 1; i >= 0; i--) {
 		//if (ledamoter.) {}
 		var currentWord = wordlist[i];
+
 		//console.log(ledamoter[id].words[currentWord.word] + ' ' + ledamoter[id].words[currentWord.word].count);
 		//console.log(currentWord);
 		if (!ledamoter[id].words.hasOwnProperty(currentWord.word)) {
@@ -81,6 +82,7 @@ var words = function(object, wordlist){
 			newObject[currentWord.word] = currentWord.count;
 		}else{
 			newObject[currentWord.word] = currentWord.count + object[currentWord.word];
+
 		}
 
 	}
@@ -91,7 +93,7 @@ var loops = 0;
 
 var writeStuff = function(){
 	console.log('WRITING');
-		var file = './../dataset/dataset2.json';
+		var file = './../dataset/dataset3.json';
 		var spooky = ledamoter;
 		jsonfile.writeFileSync(file, spooky);
 }
@@ -115,11 +117,13 @@ for (var i = folders.length - 1; i >= 0; i--) {
 
 			if (!ledamoter.hasOwnProperty(meme.anforande.intressent_id)) {
 				//ledamoter[meme.anforande.intressent_id] = 0;
-				ledamoter[meme.anforande.intressent_id] = {namn: meme.anforande.talare, len: 0, totalWords: 0, wordCount: 0, words: {} };
+				ledamoter[meme.anforande.intressent_id] = {namn: meme.anforande.talare, len: 0, totalWords: 0, wordCount: 0, words: {}, anforandeCount: 0, anforanden:[]};
 				console.log("DOOT");
 			}
 			//addWords(meme.anforande.intressent_id, frekvens);
 			ledamoter[meme.anforande.intressent_id].len += meme.anforande.anforandetext.length;
+			ledamoter[meme.anforande.intressent_id].anforandeCount++;
+			ledamoter[meme.anforande.intressent_id].anforanden.push({id: meme.anforande.dok_id, dok_datum: meme.anforande.dok_datum, subid:  currentSub, titel: meme.anforande.dok_titel, rubrik: meme.anforande.avsnittsrubrik, aktivitet: meme.anforande.kammaraktivitet, underrubrik: meme.anforande.underrubrik, replik: meme.anforande.replik});
 
 			var newWords = words(ledamoter[meme.anforande.intressent_id].words, frekvens);
 			ledamoter[meme.anforande.intressent_id].words = newWords;

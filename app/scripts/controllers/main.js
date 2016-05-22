@@ -40,7 +40,7 @@ angular.module('rksApp')
 
     $scope.getShare = function(parti){
         return $scope.antalLedamoter[parti] / 349 * 100;
-    }
+    };
 
     $scope.vardeord = [
         'att',
@@ -50,6 +50,8 @@ angular.module('rksApp')
         'enormt',
         'absolut',
         'kvinnor',
+        'hållbar',
+        'rasism',
         'feministisk',
         'män',
         'kön',
@@ -122,6 +124,25 @@ angular.module('rksApp')
 
     $scope.memes = 'aaa';
 
+    $scope.sorteraPolitiker = function(){
+        for (var property in $scope.dataset) {
+            if ($scope.dataset.hasOwnProperty(property)) {
+                console.log('Parti: ' + $scope.dataset[property].parti);
+                if ($scope.dataset[property].parti != '-') {
+                    $scope.partier[$scope.dataset[property].parti].ledamoter.push($scope.dataset[property].id);
+                }
+                
+
+            }
+        }
+        console.log($scope.partier);
+    };
+
+    $http.get('./data/politikerlista.json').success(function(data) {
+        $scope.dataset = data;
+        $scope.sorteraPolitiker();
+    });
+    /*
     $http.get('http://data.riksdagen.se/personlista/?iid=&fnamn=&enamn=&f_ar=&kn=&parti=&valkrets=&rdlstatus=&org=&utformat=json&termlista=').success(function(data) {
     	$scope.dataset = data;
     	console.log('Data fetched');
@@ -146,13 +167,7 @@ angular.module('rksApp')
             $scope.politikerLista[politiker.intressent_id] = politiker;
             
         }
-        /*
-        console.log(politikerLista);
-        console.log(politikerLista['0383111552218'].yrke);
-        console.log(politikerLista['0383111552218'].yrke);
-        var meme = politikerLista['0383111552218'].yrke;
-        console.log(meme);
-        */
+
         //$scope.apply();
         $scope.ord = null;
         $http.get('./data/ledamoter_ord250.json').success(function(data) {
@@ -163,21 +178,22 @@ angular.module('rksApp')
 
         
     });
+    */
     $http.get('./data/partier.json').success(function(data) {
-            $scope.partidata = data;
-            //console.log($scope.ord);
+        $scope.partidata = data;
+        //console.log($scope.ord);
 
-        });
+    });
 
     $scope.partier = {
-        V:{selected:false},
-        S:{selected:false},
-        MP:{selected:false},
-        SD:{selected:false},
-        C:{selected:false},
-        L:{selected:false},
-        M:{selected:false},
-        KD:{selected:false},
+        V:{selected:false, ledamoter:[], flestAnforanden:'', langstOrd:'', kortastOrd:'', flestOrd:'', minstOrd:''},
+        S:{selected:false, ledamoter:[], flestAnforanden:'', langstOrd:'', kortastOrd:'', flestOrd:'', minstOrd:''},
+        MP:{selected:false, ledamoter:[], flestAnforanden:'', langstOrd:'', kortastOrd:'', flestOrd:'', minstOrd:''},
+        SD:{selected:false, ledamoter:[], flestAnforanden:'', langstOrd:'', kortastOrd:'', flestOrd:'', minstOrd:''},
+        C:{selected:false, ledamoter:[], flestAnforanden:'', langstOrd:'', kortastOrd:'', flestOrd:'', minstOrd:''},
+        L:{selected:false, ledamoter:[], flestAnforanden:'', langstOrd:'', kortastOrd:'', flestOrd:'', minstOrd:''},
+        M:{selected:false, ledamoter:[], flestAnforanden:'', langstOrd:'', kortastOrd:'', flestOrd:'', minstOrd:''},
+        KD:{selected:false, ledamoter:[], flestAnforanden:'', langstOrd:'', kortastOrd:'', flestOrd:'', minstOrd:''},
         selectAll: function(){
             $scope.partier.V.selected = true;
             $scope.partier.S.selected = true;

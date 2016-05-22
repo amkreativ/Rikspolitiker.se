@@ -1,5 +1,5 @@
 <div ng-class="{min: dataView.isActive}" class="noot">
-  <div class="container">
+  <div class="container top">
     <div class="hero">
       <div class="inner">
         <h1>Datadriven granskning av riksdagen.</h1>
@@ -19,7 +19,7 @@
   
 </div>
 <div class="dataheader">
-  <div class="container particontainer">
+  <div class="container top particontainer">
   <span ng-show="dataView.isActive" class="rubrik"><h2>PARTIER</h2></span>
     <div ng-show="dataView.isActive" class="partisettings">
       
@@ -42,9 +42,9 @@
         <div class="partibio">
           <h3>{{partinamn[dataView.activeParti]}}</h3>
           <ul class="">
-            <li>123</li>
-            <li>456</li>
-            <li>789</li>
+            <li>Antal ord totalt: {{partidata[dataView.activeParti].antalOrd}} ord</li>
+            <li>Antal unika ord: {{partidata[dataView.activeParti].unikaOrd}} ord</li>
+            <li>Snittlängd på ord: {{partidata[dataView.activeParti].tecken / partidata[dataView.activeParti].antalOrd | number: 2}} tecken</li>
           </ul>
           <div class="bottom">
           <!--
@@ -74,14 +74,59 @@
 </div>
 <div class="noot kategorier">
   <div class="container">
-    <div class="box">
-      memes
-    </div>
-    <div class="box">
-      memes
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-lg-4" ng-repeat="val in partier[dataView.activeParti].ledamoter">
+        <div ng-class="{liten: true}" class="ledamot">
+          <div class="ledamotfarg {{dataset[val].parti}}"></div>
+          <div class="ledamotbio">
+            <h3>{{dataset[val].fornamn}} {{dataset[val].efternamn}}</h3>
+            <ul>
+              <li><span>{{2016-dataset[val].fodd_ar}} år</span><span>{{dataset[val].valkrets}}</span></li>
+            </ul>
+          </div>
+          <div class="ledamotbottom">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            3.5
+          </div>
+          <div class="ledamotbild">
+            <img src="{{dataset[val].bild_url_192}}">
+          </div>  
+        </div>
+      </div>
+      <!--
+      <div class="col-xs-12 col-sm-6 col-lg-4" ng-repeat="(key, val) in dataset">
+        <div ng-class="{liten: true}" class="ledamot">
+          <div class="ledamotfarg {{val.parti}}"></div>
+          <div class="ledamotbio">
+            <h3>{{val.fornamn}} {{val.efternamn}}</h3>
+            <ul>
+              <li><span>{{2016-val.fodd_ar}} år</span><span>{{val.valkrets}}</span></li>
+            </ul>
+          </div>
+          <div class="ledamotbottom">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            3.5
+          </div>
+          <div class="ledamotbild">
+            <img src="{{val.bild_url_192}}">
+          </div>  
+        </div>
+        
+      </div>
+      -->
     </div>
   </div>
 </div>
+<!--
 <div class="noot kategorier">
   <div class="debug">
     <table class="table">
@@ -127,3 +172,4 @@
   </div>
 
 </div>
+-->

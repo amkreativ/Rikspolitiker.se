@@ -5,7 +5,7 @@ var _ = require('lodash');
 var http = require('http');
 var request = require('request');
 
-var file = './../dataset/dataset.json';
+var file = './../dataset/dataset3.json';
 
 var dataset = jsonfile.readFileSync(file);
 
@@ -93,12 +93,18 @@ var buildDataset = function(){
         	politiker.tecken = 0;
 	        politiker.antalOrd = 0;
 	        politiker.unikaOrd = 0;
+	        politiker.len = 0;
+	        politiker.antalAnforanden = 0;
+	        politiker.anforanden = [];
         }else{
-        	politiker.ord = ledamoter[politiker.id].ordlista;
+        	politiker.ord = ledamoter[politiker.id].ordlista.slice(0,250);
 	        politiker.ordlangd = ledamoter[politiker.id].ordlangd;
 	        politiker.tecken = ledamoter[politiker.id].tecken;
 	        politiker.antalOrd = ledamoter[politiker.id].antalOrd;
 	        politiker.unikaOrd = ledamoter[politiker.id].unikaOrd;
+	        politiker.len = ledamoter[politiker.id].len;
+			politiker.antalAnforanden = ledamoter[politiker.id].anforandeCount;
+			politiker.anforanden = ledamoter[politiker.id].anforanden;
 
 	        partier[lm.parti].tecken += ledamoter[lm.intressent_id].tecken;
         }
@@ -203,24 +209,34 @@ var wordFunction = function(){
 			tecken: totalLangd,
 			unikaOrd: unikaOrd,
 			antalOrd: antalOrd,
-			ordlista: sorteradOrdlista
+			ordlista: sorteradOrdlista,
+			len: person.len,
+			antalAnforanden: person.anforandeCount,
+			anforanden: person.anforanden
 		}
-		
+
 		var ledamot1000 = {
 			namn: person.namn,
 			ordlangd: (totalLangd/antalOrd).toFixed(2),
 			tecken: totalLangd,
 			unikaOrd: unikaOrd,
 			antalOrd: antalOrd,
-			ordlista: sorteradOrdlista.slice(0, 1000)
+			ordlista: sorteradOrdlista.slice(0, 1000),
+			len: person.len,
+			antalAnforanden: person.anforandeCount,
+			anforanden: person.anforanden
 		}
+
 		var ledamot250 = {
 			namn: person.namn,
 			ordlangd: (totalLangd/antalOrd).toFixed(2),
 			tecken: totalLangd,
 			unikaOrd: unikaOrd,
 			antalOrd: antalOrd,
-			ordlista: sorteradOrdlista.slice(0, 250)
+			ordlista: sorteradOrdlista.slice(0, 250),
+			len: person.len,
+			antalAnforanden: person.anforandeCount,
+			anforanden: person.anforanden
 		}
 		var ledamot100 = {
 			namn: person.namn,
@@ -228,7 +244,10 @@ var wordFunction = function(){
 			tecken: totalLangd,
 			unikaOrd: unikaOrd,
 			antalOrd: antalOrd,
-			ordlista: sorteradOrdlista.slice(0, 100)
+			ordlista: sorteradOrdlista.slice(0, 100),
+			len: person.len,
+			antalAnforanden: person.anforandeCount,
+			anforanden: person.anforanden
 		}
 
 
